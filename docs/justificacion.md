@@ -10,7 +10,6 @@ A continuación, detallamos componente por componente con su precio de referenci
 * **Componente:** AMD Ryzen 7 5700X (8 Núcleos / 16 Hilos, hasta 4.6 GHz)
 * **Precio de referencia:** $340.400 ARS (Fuente: Compra Gamer)
 * **Justificación técnica:** Elegimos este procesador porque tanto *Blender* como *OBS Studio* exigen CPUs multi-núcleo para renderizar escenas complejas y procesar streams en vivo en simultáneo. Al contar con 8 núcleos reales y 16 hilos, cumplimos sobradamente con los requisitos recomendados. Además, como el fabricante aclara que **no incluye cooler de fábrica**, esta elección justifica que hayamos sumado un disipador de torre Deepcool por separado en el presupuesto para evitar el estrangulamiento térmico (*thermal throttling*).
-* **Justificación técnica:** Elegimos este procesador porque *Blender* y *OBS Studio* piden explícitamente CPUs multi-núcleo para procesar renderizados pesados y transmisiones en vivo al mismo tiempo. Al tener 8 núcleos reales y 16 hilos, cumplimos perfectamente con el requisito recomendado de Blender y nos aseguramos de que la compu no se clave o tire tirones si estamos transmitiendo en OBS mientras editamos un vector en *Inkscape*.
 
 ### 2. Memoria RAM
 * **Componente:** Corsair Vengeance LPX 32GB (2 x 16GB) DDR4 3200MHz
@@ -21,8 +20,8 @@ A continuación, detallamos componente por componente con su precio de referenci
 * **Componente:** MSI NVIDIA GeForce RTX 4060 8GB GDDR6
 * **Precio de referencia:** $490.000 ARS (Fuente: Hard Gamers)
 * **Justificación técnica:** Este componente es clave para el diseño multimedia. Elegimos NVIDIA porque cuenta con tecnologías específicas para este tipo de laburo:
-  * Para **Blender**: Aprovecha los núcleos *RTX* y la tecnología *OptiX* para renderizar por hardware muchísimo más rápido que usando solo el procesador, cumpliendo con los 8 GB de VRAM recomendados.
-  * Para **OBS Studio**: Incorpora el codificador *NVENC* de NVIDIA, lo que significa que la placa de video se encarga de procesar el stream de video de forma nativa, liberando de carga a la CPU para que no colapse.
+* Para **Blender**: Aprovecha los núcleos *RTX* y la tecnología *OptiX* para renderizar por hardware muchísimo más rápido que usando solo el procesador, cumpliendo con los 8 GB de VRAM recomendados.
+* Para **OBS Studio**: Incorpora el codificador *NVENC* de NVIDIA, lo que significa que la placa de video se encarga de procesar el stream de video de forma nativa, liberando de carga a la CPU para que no colapse.
 
 ### 4. Almacenamiento (SSD)
 * **Componente:** SSD NVMe PCIe M.2 Kingston NV2 1TB
@@ -30,8 +29,8 @@ A continuación, detallamos componente por componente con su precio de referenci
 * **Justificación técnica:** Como investigamos en los requisitos, *Audacity* e *Inkscape* necesitan discos locales rápidos y estables porque trabajar desde nubes o un USB puede romper los archivos o ralentizar el flujo de trabajo. Un SSD NVMe es hasta 5 veces más rápido que un SSD común (SATA), lo que nos garantiza que los archivos pesados de audio y video se abran al toque y que el caché de pinceles en *Krita* no tenga *lag*.
 
 ### 5. Placa Madre (Motherboard)
-* **Componente:** ASUS Prime B550M-A AC (Socket AM4)
-* **Precio de referencia:** $140.000 ARS (Fuente: Full H4rd)
+* **Componente:** ASUS PRIME B550M-A AC (PCIe 4.0, Wi-Fi/BT)
+* **Precio de referencia:** $263.000 ARS (Fuente: Mercadolibre)
 * **Justificación técnica:** Elegimos una motherboard con chipset B550 porque soporta de forma nativa el procesador Ryzen 7 que elegimos y tiene soporte para PCIe 4.0, lo que exprime al máximo la velocidad del SSD Kingston y la placa RTX 4060. Además, este modelo viene con Wi-Fi integrado, lo cual es un golazo si en el estudio no tenemos una boca de red cerca.
 
 ### 6. Fuente de Alimentación
