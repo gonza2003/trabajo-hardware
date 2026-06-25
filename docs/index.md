@@ -7,6 +7,7 @@ title: Trabajo Integrador — Estudio Multimedia
 **Instituto Superior IDRA — Tecnicatura Superior en Desarrollo de Software**
 
 Escenario: **Tema 2 — Estudio multimedia** (Audacity, Blender, Inkscape, GIMP, Krita, OBS Studio)
+Integrantes: D`arino Agustin, Cerezo Javier y Mungiello Gonzalo
 
 ## Documentación
 

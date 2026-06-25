@@ -1,13 +1,39 @@
 # Conclusiones
 
-Después de armar todo el sistema y revisar precios, llegamos a la conclusión de que el equipo que diseñamos termina siendo un buen punto de partida para alguien que recién está arrancando como **creador de contenido o se dedica a tareas de diseño/edición multimedia de forma freelance o semi-profesional** (streamer, editor de video amateur, diseñador gráfico independiente, alguien que hace tutoriales, etc.), más que una estación de trabajo de nivel profesional pesado tipo estudio de animación o VFX.
+## Resumen de lo que hicimos
 
-Esto se nota sobre todo en la elección de la GPU: la RTX 4060 con 8GB de VRAM cumple el mínimo recomendado para trabajar en Blender con escenas medianas y da NVENC para grabar/transmitir con OBS sin romper el presupuesto, pero si alguien quisiera dedicarse a animación 3D compleja o renders en altísima resolución de forma full-time, en algún momento se va a quedar corto de VRAM. Para el perfil que pensamos (una sola persona o un estudio chico haciendo contenido, ediciones, streams y diseño gráfico) nos pareció el punto justo entre precio y rendimiento.
+Armamos una propuesta de estación de trabajo para un estudio multimedia que pueda correr sin problemas (y hasta al mismo tiempo) Audacity, Blender, Inkscape, GIMP, Krita y OBS Studio. Para llegar a esto, primero relevamos los requisitos recomendados de cada programa, vimos cuál era el "techo" de exigencia entre todos (que terminó siendo Blender, seguido de OBS) y a partir de ahí elegimos los componentes que cumplan o superen ese techo, todo corriendo sobre Windows 11 Pro 64-bit.
 
-Lo mismo pasa con el resto del armado: priorizamos cosas que le sirven a un creador de contenido en el día a día — un SSD rápido para no perder tiempo cargando proyectos ni frames al grabar, 32GB de RAM para tener varios programas abiertos a la vez (algo muy típico de este perfil: editar en una ventana, tener referencias en otra, grabar todo en una tercera), un monitor IPS para que los colores se vean bien al diseñar, y auriculares de monitoreo en vez de auriculares "gamer" para escuchar el audio real al editar. Son decisiones que tienen sentido para alguien que produce contenido, no tanto para un gamer o para una oficina común.
+## Las decisiones más importantes que tomamos
 
-En cuanto al presupuesto, terminamos en un total bastante más alto de lo que esperábamos al principio (pasamos de un cálculo viejo de $1.913.400 a $2.067.591 actualizado), y eso nos sirvió para entender lo rápido que cambian los precios en el mercado argentino — no se puede armar una cotización y dejarla guardada por meses sin revisarla, porque algunos componentes bajan y otros suben bastante en poco tiempo.
+1. **GPU NVIDIA RTX 5060 Ti 16GB** — sin duda la elección más importante de todo el armado. Permite usar OptiX para acelerar el render en Blender (Cycles) y NVENC para que OBS codifique video sin tocar la CPU. Los 16GB de VRAM dan bastante margen para escenas 3D pesadas y texturas grandes.
+2. **CPU Ryzen 9 7900 (12c/24t)** — porque tanto el render por CPU como las simulaciones y el compositing de Blender escalan con la cantidad de hilos. Con 12 núcleos se puede renderizar y seguir trabajando al mismo tiempo sin que la PC se trabe.
+3. **32GB de RAM DDR5-6000** — es lo mínimo que pide Blender para escenas pesadas, y la frecuencia que elegimos es la que mejor rinde en la plataforma Ryzen 7000.
+4. **Monitor ASUS ProArt PA278QV** (100% sRGB, ΔE menor a 2) — nos dimos cuenta de que para este escenario la fidelidad de color es casi tan importante como la potencia de cómputo, porque se va a usar para diseño en Krita, GIMP e Inkscape.
+5. **Plataforma AM5** — la elegimos por ser actual, coherente entre todos los componentes y porque deja la puerta abierta para actualizar la PC más adelante (DDR5, PCIe 5.0).
 
-Como posible mejora a futuro, si el creador de contenido empieza a generar más ingresos con esto, los upgrades más lógicos serían pasar a una GPU con más VRAM (para escenas más pesadas en Blender o para trabajar en mayor resolución) y sumar un segundo SSD dedicado solo a guardar el material grabado, ya que la motherboard que elegimos tiene un slot M.2 libre para eso.
+## Tabla de cumplimiento de requisitos
 
-En general, el trabajo nos sirvió para entender que armar una PC no es solo juntar las piezas más potentes que entren en el presupuesto, sino pensar primero para quién es el equipo y qué va a hacer con él todos los días, y recién ahí elegir los componentes que tengan sentido para ese uso puntual. 
+| Recurso | Requisito máximo del conjunto | Lo que propusimos | ¿Cumple? |
+|---|---|---|---|
+| CPU | 8+ núcleos | 12 núcleos / 24 hilos | Sí, lo supera |
+| RAM | 32 GB | 32 GB DDR5-6000 | Sí, cumple |
+| GPU / VRAM | RTX, 8GB+ | RTX 5060 Ti, 16GB | Sí, lo supera |
+| Almacenamiento | NVMe + disco grande | NVMe 1TB + HDD 2TB | Sí, cumple |
+| Color del monitor | sRGB alto, ΔE bajo | 100% sRGB, ΔE < 2 | Sí, cumple |
+
+Como se ve, en CPU y en GPU/VRAM la propuesta queda por encima de lo mínimo pedido, lo que le da margen para que la PC no quede obsoleta tan rápido y aguante proyectos más grandes en el futuro.
+
+## Costo y posibilidad de escalar
+
+El sistema completo (la PC + monitor + periféricos + el sistema operativo) sale aproximadamente $4.000.000 ARS, donde la GPU (~25%) y el monitor (~15%) son los rubros que más pesan. También armamos una variante más económica (~$3.500.000 ARS) que mantiene la RAM, la VRAM y el SSD sin tocar, pensada para el caso de que hubiera un límite de presupuesto más ajustado. Como toda la plataforma es AM5, en el futuro se podría poner una CPU mejor, agregar un segundo SSD NVMe o cambiar a una GPU más potente sin necesidad de cambiar la motherboard ni la RAM.
+
+## Algunas limitaciones que encontramos
+
+- **Los precios cambian todo el tiempo:** en Argentina el costo del hardware depende mucho del dólar, los impuestos y las promociones de cada momento. Los precios que usamos son de referencia (junio 2026).
+- **Los benchmarks son orientativos:** los números que citamos (Cinebench, Blender Open Data) dependen de cómo esté configurada cada PC (límites de potencia, PBO, drivers), así que hay que tomarlos con pinzas y no como un valor exacto.
+- **La opción de Linux:** si en algún momento se buscara bajar el costo sacando la licencia de Windows, Linux también puede correr todo el combo de programas, aunque con más complicaciones con los drivers de NVIDIA y algunos periféricos.
+
+## Cierre
+
+Con esta propuesta llegamos a una PC bastante equilibrada y pensada específicamente para producción multimedia: aprovechamos la aceleración por hardware de NVIDIA en los programas que la soportan, priorizamos la fidelidad de color para el trabajo visual, y tratamos de mantener un costo razonable dejando una ruta clara para actualizar la PC en el futuro. Creemos que con esto cumplimos lo que pedía la consigna: un relevamiento de requisitos completo, una justificación técnica con sentido y un presupuesto detallado y verificable.

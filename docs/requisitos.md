@@ -1,62 +1,61 @@
-# Relevamiento de Requisitos: Estudio Multimedia
+# Etapa 1 — Relevamiento de requisitos
 
-Para el desarrollo de este sistema informático profesional, se analizaron los requisitos recomendados del software asignado para el **Tema 2**. El objetivo es garantizar que la estación de trabajo funcione con fluidez absoluta en tareas de edición de audio, modelado 3D, diseño vectorial, manipulación de imágenes y transmisión en vivo.
+**Escenario asignado:** Tema 2 - Estudio Multimedia
+**Programas que tuvimos que analizar:** Audacity, Blender, Inkscape, GIMP, Krita y OBS Studio
 
----
+## Cómo trabajamos esto
 
-## 📊 Tabla Comparativa de Requisitos Recomendados
+Lo primero que hicimos fue meternos a la web oficial de cada programa para sacar los requisitos recomendados (no los mínimos, que es lo que pedía la consigna). En algunos casos como Blender y OBS la info estaba clara, pero con Inkscape y Audacity tuvimos que buscar un poco más en foros y wikis porque las páginas oficiales no dan muchos detalles de hardware.
 
-A continuación, se consolidan los requisitos óptimos de hardware y software extraídos de la documentación oficial de cada aplicación:
+La idea que usamos para armar la PC fue: agarrar el requisito más alto entre todos los programas, en cada categoría (CPU, RAM, GPU, etc.) y armar una compu que cumpla o pase ese techo. Así nos asegurarse de que la máquina banque cualquiera de los 6 programas, incluso usando varios al mismo tiempo (por ej. renderizando en Blender mientras se edita en Krita y de fondo grabás con OBS, que es una situación bastante típica en un estudio multimedia real).
 
-| Software | Sistema Operativo Compatible | CPU Recomendada | Memoria RAM | Almacenamiento Requerido | GPU (Si aplica) |
-| :--- | :--- | :--- | :--- | :--- | :--- |
-| **Audacity** | Windows 10/11 (32/64 bits) | Cualquier CPU compatible con el SO | 4 GB o superior | HDD/SSD local (No nubes ni USB) | No requiere dedicada |
-| **Blender** | Windows 11, Linux (64 bits), macOS | Multi-core de 8 núcleos | 32 GB | SSD con espacio para proyectos | 8 GB de VRAM (NVIDIA/AMD) |
-| **Inkscape** | Windows 8.1/10/11, macOS, Linux | 1 GHz o superior (Quad-Core) | 8 GB | SSD (Espacio según proyectos) | Integrada moderna o Dedicada |
-| **GIMP** | Windows 10/11 (64 bits), macOS, Linux | Intel/AMD Dual-Core o superior | 16 GB | SSD para alta velocidad de lectura | Aceleración por hardware opcional |
-| **Krita** | Windows 8.1 o superior, macOS, Linux | CPU moderna de 64 bits | 16 GB | SSD para caché de pinceles | OpenGL 3.0 / Direct3D 11 |
-| **OBS Studio**| Windows 11 (64 bits), macOS, Linux | Intel i7 8700k / AMD Ryzen 5 1600X | 8 GB | SSD para grabación local | GTX 10 Series / Radeon 5000 |
+De los 6, el que pide más potencia con diferencia es **Blender** (por el render 3D, las simulaciones y el compositing). Después viene **OBS Studio** por el tema de codificar video en vivo. Los otros cuatro (Krita, GIMP, Inkscape, Audacity) son livianos en comparación, pero cada uno aporta su requisito particular: Krita/GIMP/Inkscape necesitan buena fidelidad de color, y Audacity necesita baja latencia de audio más que potencia bruta.
 
----
+## Tabla comparativa
 
-## 🔍 Análisis Detallado por Software
+| Software | SO compatible | CPU recomendada | RAM recom. | Almacenamiento | GPU |
+|---|---|---|---|---|---|
+| Blender | Windows 10/11, macOS, Linux | 8+ núcleos | 32 GB (64 en escenas pesadas) | SSD NVMe para SO/apps + 1-2 TB para proyectos | NVIDIA RTX, 8 GB+ VRAM (CUDA/OptiX) |
+| OBS Studio | Windows 10/11, macOS 12+, Linux | 6-8 núcleos (o se descarga en NVENC) | 16 GB | SSD dedicado para grabar | NVIDIA GTX 1660+ / RTX (NVENC) |
+| Krita | Windows 10/11, macOS, Linux | Quad-core 4 GHz+ | 16 GB | SSD, 512 GB+ | GPU moderna (Vulkan/Direct3D 11/OpenGL 3.0), mejor si es NVIDIA |
+| GIMP | Windows 10/11, macOS, Linux | Multinúcleo 2.5 GHz+ | 8-16 GB | SSD, ~2 GB de instalación | OpenGL 3.3, 512 MB+ VRAM (OpenCL) |
+| Inkscape | Windows 10/11, macOS, Linux | Quad-core 2.5 GHz+ (pesa más el single-core) | 8 GB | SSD, ~1 GB | OpenGL 2.0+, ayuda tener 1 GB+ VRAM |
+| Audacity | Windows 10/11, macOS, Linux | Dual-core 2 GHz+ | 4 GB | SSD, depende del proyecto | No usa GPU |
 
-### 1. Audacity
-Es un software gratuito para grabar y editar audios. Es compatible con Windows 10 y 11, así como con versiones anteriores (8.1, 7 y Vista) en arquitecturas de 32 y 64 bits. No posee requisitos específicos de CPU ni GPU y funciona sin problemas en cualquier PC o notebook compatible. El único requisito crítico es contar con un **disco duro o SSD local**, ya que el almacenamiento en red (la nube), discos externos o USB pueden no ser fiables para el flujo de datos en tiempo real.
+### Lo que termina pidiendo el conjunto (lo que define la PC)
 
-### 2. Blender
-Es una suite de creación 3D gratuita y de código abierto que cubre modelado, animación, renderizado y edición de video. Es multiplataforma (Linux, Windows y macOS) y permite personalización mediante scripts en Python. 
-* **En Windows y Linux:** Requiere Windows 11 o distribución con `glibc 2.28` o posterior de 64 bits, un procesador de 8 núcleos, 32 GB de RAM y una GPU con 8 GB de VRAM. 
-* **En macOS:** Requiere macOS 12 o superior (como los perfiles de soporte avanzados) y arquitectura Apple Silicon con 32 GB de RAM.
-* **Nota visual:** Se recomienda una resolución de pantalla mínima de **1920x1080**.
+| Recurso | Valor que nos tiene que dar la propuesta | ¿Por qué programa? |
+|---|---|---|
+| CPU | 8+ núcleos, multinúcleo potente | Blender |
+| RAM | 32 GB | Blender |
+| GPU | NVIDIA RTX con 8 GB+ de VRAM | Blender (OptiX) + OBS (NVENC) |
+| Almacenamiento | SSD NVMe + disco grande para proyectos | Blender / OBS |
+| Monitor / color | Buena cobertura sRGB, ΔE bajo | Krita / GIMP / Inkscape |
 
-### 3. Inkscape
-Un potente editor gratuito de gráficos vectoriales que utiliza el formato estándar SVG (W3C). 
-* **En Windows:** La versión 1.4.x requiere al menos Windows 8.1; versiones anteriores como la 1.2.2 extenden soporte hasta Windows 7, y la 0.92.3 soporta Vista y XP. 
-* **En macOS y Linux:** Soporta procesadores Intel y Apple Silicon. En Linux los requisitos de hardware son muy bajos porque el procesamiento de vectores recae principalmente en la CPU (se aconseja 1 GHz o superior y 8 GB de RAM). La mayoría de las placas de video integradas son suficientes.
+## Algunas notas que sacamos de cada programa
 
-### 4. GIMP
-Editor de imágenes multiplataforma y software libre que soporta múltiples lenguajes de programación para la creación de scripts (C, C++, Python, etc.). 
-* **En Windows:** Exige Windows 11 (64 bits) si se descarga desde la Microsoft Store, o Windows 10 mediante su instalador ejecutable (`.exe`). Requiere CPU Intel o AMD de 64 bits de doble núcleo o superior.
-* **En macOS y Linux:** Soporta macOS 10.12 o superior (Intel/Apple Silicon) y cualquier distribución moderna de Linux vía Flatpak o gestor de paquetes nativo.
-* **Memoria:** Para todos los entornos se establece una memoria RAM recomendada de **16 GB** para trabajar con imágenes complejas de manera fluida.
+- **Blender:** entre más núcleos tenga la CPU mejor (render por CPU, física, fluidos, compositing), y una GPU NVIDIA RTX ayuda muchísimo porque acelera el render en Cycles con OptiX. La VRAM es importante porque ahí entran las escenas y texturas pesadas. Recomiendan 32 GB de RAM y un SSD rápido más algo de almacenamiento grande para los proyectos.
+- **OBS Studio:** depende bastante de a qué resolución/FPS se grabe y qué encoder se use. Si usás NVENC (que tienen las GeForce GTX serie 16 en adelante y las RTX) la codificación se la banca la GPU y no la CPU, entonces podés grabar/transmitir sin que se note tanto en el resto del trabajo.
+- **Krita:** pide 16 GB de RAM y una GPU que no sea muy vieja, porque el lienzo se acelera por GPU. Además recomiendan usar tableta gráfica para pintar, cosa que con mouse se hace bastante incómodo.
+- **GIMP:** anda mejor con 8-16 GB de RAM, tiene soporte OpenCL para algunos filtros y un SSD ayuda con los tiempos de carga.
+- **Inkscape:** acá lo que más importa es el rendimiento de un solo núcleo (no tanto la cantidad), porque carga todo el SVG en memoria. Con 8 GB de RAM va cómodo.
+- **Audacity:** es el más liviano de todos, con 4 GB de RAM y un CPU de 2 GHz ya anda bien. Lo que más importa en este caso es tener una buena entrada de audio (micrófono o interfaz), no tanto el hardware de cómputo.
 
-### 5. Krita
-Programa de pintura digital profesional enfocado en ilustradores y artistas conceptuales. Es de código abierto y multiplataforma (Windows 8.1+, macOS 10.14+ y Linux). Demanda un mínimo de 16 GB de RAM recomendados y soporte gráfico para OpenGL 3.0 o superior / Direct3D 11. Como periférico fundamental para el diseño, se aconseja el uso de una **tableta gráfica** compatible.
+## Sistema operativo elegido: Windows 11 Pro 64-bit
 
-### 6. OBS Studio
-Software libre enfocado en la grabación de video y transmisión en streaming en tiempo real. Posee una API robusta para acoplar complementos a medida.
-* **En Windows:** Requiere estrictamente Windows 11 de 64 bits, procesadores Intel Core i7 8700k / AMD Ryzen 5 1600X, 8 GB de RAM y placas gráficas equivalentes a NVIDIA GeForce 10 Series o AMD Radeon 5000 Series.
-* **En macOS:** Exige versión 12.5 o superior, CPU Intel Quad-Core o Apple Silicon, y 8 GB de RAM.
-* **En Linux:** Soportado oficialmente en distros basadas en Ubuntu 14.04 o superior, requiriendo entorno X11 o Wayland con OpenGL 3.3.
+Los 6 programas corren en Windows, macOS y Linux, así que la decisión no fue por compatibilidad sino por cuál plataforma le saca mejor jugo al hardware que elegimos:
 
----
+- Los drivers de NVIDIA para CUDA/OptiX (que usa Blender) y NVENC (que usa OBS) están más maduros y son más fáciles de instalar/actualizar en Windows. Además existen los drivers "NVIDIA Studio" que están pensados justo para este tipo de uso (creación de contenido).
+- En Windows es más fácil que funcione cualquier periférico: tabletas Wacom, placas de captura, interfaces de audio, micrófonos USB, etc.
+- En general hay más soporte y comunidad para estos 6 programas en Windows.
 
-## 💻 Sistema Operativo Seleccionado para la Propuesta Final
+## Fuentes que consultamos
 
-En base al análisis de requisitos de los programas anteriores, el grupo ha decidido que el sistema informático final utilizará **Windows 11 Home/Pro de 64 bits**.
+- Blender Foundation - sección de Requirements en blender.org/download y el manual de Blender para la parte de GPU Rendering.
+- OBS Project - System Requirements de la documentación oficial.
+- Krita - página de descarga oficial (krita.org).
+- GIMP - documentación oficial (docs.gimp.org).
+- Inkscape - foros y guías del proyecto.
+- Audacity - System Requirements del manual/wiki oficial.
 
-### Justificación Técnica:
-1. **Compatibilidad Absoluta:** Es el único sistema operativo que soporta las versiones más actuales de todo el software analizado de forma nativa sin configuraciones complejas adicionales.
-2. **Optimización de Hardware:** Aplicaciones pesadas como *Blender* y *OBS Studio* aprovechan de manera mucho más directa las últimas actualizaciones de drivers de video de marcas como NVIDIA y AMD bajo el ecosistema de Windows, lo que garantiza el rendimiento adecuado en renderizados por hardware y transmisiones estables.
-3. **Soporte de Tiendas y Ejecutables:** Permite la instalación directa de suites como GIMP desde su tienda nativa o a través de instaladores robustos independientes de 64 bits.
+(Los links puntuales que usamos están en el repositorio, en la sección de justificación.)
