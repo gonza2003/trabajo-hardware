@@ -18,13 +18,13 @@ Los precios están en pesos argentinos (ARS), los buscamos en junio de 2026 en d
 | 10 | Monitor | ASUS ProArt PA278QV 27" QHD | Mexx | 615.619 |
 | 11 | Tableta gráfica | Wacom Intuos Small | Wacom DC·DC | 132.890 |
 | 12 | Teclado + mouse | Logitech MK270 | FullH4rd | 23.830 |
-| 13 | Mouse 3D | 3Dconnexion SpaceMouse Compact | FullH4rd | 23.830 |
-| 14 | Micrófono | FIFINE K669/K681 USB | Mercado Libre | 116.436 |
-| 15 | Webcam | Logitech C920 Full HD | Mercado Libre | 116.436 |
-| 16 | Parlantes | Logitech Z207 (estéreo, con Bluetooth) | Mercado Libre | 116.436 |
+| 13 | Mouse 3D | 3Dconnexion SpaceMouse Compact | Mercado libre | 212.126 |
+| 14 | Micrófono | FIFINE K669/K681 USB | Mercado Libre | 114.000 |
+| 15 | Webcam | Logitech C920 Full HD | Mercado Libre | 111.590 |
+| 16 | Parlantes | Logitech Z207 (estéreo, con Bluetooth) | Mercado Libre | 163.000 |
 | 17 | Sistema operativo | Windows 11 Pro 64-bit | FullH4rd / Activaya | 22.750 |
 
-### **TOTAL ≈ $4.004.799 ARS**
+### **TOTAL ≈ $ 4.489.079 ARS**
 
 ## Variante económica
 
@@ -41,6 +41,4 @@ Pensamos también una versión más barata por si hiciera falta recortar, pero s
 ## Aclaraciones que tenemos que hacer
 
 - **Los precios se mueven mucho:** en Argentina el hardware sube y baja todo el tiempo según el dólar, impuestos y promos de cada tienda. Estos valores son de referencia (relevados en junio 2026) y antes de comprar hay que volver a fijarse en cada tienda.
-- **Forma de pago:** los precios de la tabla son pensando en pago con débito, transferencia o efectivo. Si se paga en cuotas o con tarjeta de crédito, el precio final termina siendo más alto.
-- **Stock:** puede pasar que algún producto esté momentáneamente sin stock; en ese caso se reemplaza por algo equivalente de la misma gama y precio similar.
-- **Precios más "estimados":** la RAM, el gabinete, el HDD, el micrófono y la licencia de Windows los pusimos con un precio aproximado porque varían bastante de tienda a tienda — conviene confirmarlos contra el listado actualizado antes de comprar.
+- **Precios más "estimados":** la RAM, el gabinete, el HDD, el micrófono y la licencia de Windows los pusimos con un precio aproximado porque varían bastante de tienda a tienda.
