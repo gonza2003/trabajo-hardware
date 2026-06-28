@@ -1,85 +1,105 @@
 # Etapa 2 — Selección y justificación de hardware
 
-**Plataforma que elegimos:** AMD AM5 (DDR5, PCIe 5.0)
+## La decisión de fondo: dos PCs, dos filosofías de compra
 
-La elegimos porque es la plataforma actual de AMD, tiene buena relación precio/rendimiento en multinúcleo (que es justo lo que necesita Blender) y en Argentina se consigue bastante bien.
+Como explicamos en requisitos.md, decidimos comparar dos propuestas en vez de presentar una sola, porque representan dos formas opuestas de pensar la misma compra:
 
-## Criterios que usamos para armar la PC
+- **PC A — Estudio independiente de animación:** perfil profesional, un solo usuario que produce y vende su propio trabajo. La lógica acá es "la máquina es la herramienta de laburo, invertir de más se paga solo en tiempo de render y en vida útil del equipo".
+- **PC B — Aula de la facultad (perfil institucional):** alguien que compra 30 equipos iguales con presupuesto acotado para que los alumnos cursen una materia. La lógica se invierte: "tiene que cumplir el programa de la materia y nada más", porque cualquier gasto de más se multiplica por 30 y la máquina no la usa un profesional que rentabiliza la inversión, sino que rota entre decenas de estudiantes.
 
-1. Que cumpla o supere el requisito más alto de todo el combo de programas (lo vimos en requisitos.md).
-2. Priorizar GPU y monitor por sobre el resto, porque en este escenario son los componentes que más impactan: la GPU para render acelerado y el monitor para la fidelidad de color.
-3. Que todos los componentes sean de la misma plataforma (AM5) para no tener problemas de compatibilidad y poder upgradear después sin cambiar todo.
-4. Pensar en que la PC va a estar prendida horas haciendo renders, entonces el tema térmico y el ruido también importan.
+Las dos parten del mismo piso de requisitos (el de requisitos.md), pero una lo supera bastante y la otra se queda justo en el límite. Vamos componente por componente mostrando las dos elecciones en paralelo.
 
-## 1. CPU — AMD Ryzen 9 7900 (12 núcleos / 24 hilos)
+## Criterios generales
 
-**Specs:** 12c/24t, 3.7 GHz base / 5.4 GHz boost, 65W de TDP, socket AM5, viene con gráficos integrados Radeon, soporta hasta 128 GB de RAM y tiene 24 líneas PCIe 5.0.
+1. Las dos PCs tienen que cumplir como mínimo el requisito más exigente del conjunto de programas (8+ núcleos, 32GB RAM, RTX 8GB+ VRAM, SSD NVMe, buena fidelidad de color).
+2. En PC A, directamente vamos por superar ese piso en casi todo, porque el costo extra se justifica en productividad de un solo usuario profesional.
+3. En PC B, el objetivo es no pasarse de ese piso salvo que sea estrictamente necesario, porque cada peso de más se multiplica por 30 equipos.
+4. Las dos plataformas elegidas son AMD AM5 (DDR5, PCIe 5.0), por ser la plataforma actual y la de mejor relación precio/rendimiento multinúcleo en Argentina.
 
-**Por qué la elegimos:** Blender escala casi al palo con la cantidad de hilos que tenga la CPU, tanto en render por CPU como en simulaciones de física/fluidos y en compositing. Pasar de 8 a 12 núcleos / 24 hilos se nota bastante en escenas pesadas, y también ayuda si querés renderizar y al mismo tiempo seguir trabajando en Krita/GIMP o grabando con OBS. Como tiene solo 65W de TDP, se puede enfriar con un cooler más chico y hace menos ruido. La gráfica integrada también suma porque si algún día falla la GPU dedicada, la PC sigue prendiendo y se puede usar para lo básico. En Cinebench R23 multi-core anda cerca de los 28.900 puntos, prácticamente al lado del 7900X que es más caro.
+## 1. CPU
 
-**Alternativa más barata:** Ryzen 7 7700 (8c/16t), que ya viene con cooler incluido (Wraith Stealth). Cumple el mínimo de 8+ núcleos y te ahorra comprar un disipador aparte.
+| | PC A — Estudio profesional | PC B — Aula institucional |
+|---|---|---|
+| Modelo | AMD Ryzen 9 9900X (12c/24t) | AMD Ryzen 5 7600 (6c/12t, con cooler incluido) |
+| Specs | 4.4 GHz base / 5.6 GHz boost, 120W TDP, AM5, Zen 5 | 3.8 GHz base / 5.1 GHz boost, 65W TDP, AM5, Zen 4 |
 
-## 2. Motherboard — MSI MAG B650 Tomahawk WiFi
+**PC A:** vamos directo a un Ryzen 9 de generación actual porque Blender escala casi linealmente con la cantidad de hilos (render por CPU, simulación de física/fluidos, compositing). Para un estudio que vive de esto, tener 12 núcleos en vez de los 8 mínimos requeridos significa renderizar más rápido y poder seguir trabajando en otra cosa mientras corre un render en segundo plano — eso es tiempo (y plata) que se recupera.
 
-**Specs:** chipset B650, socket AM5, soporta DDR5 hasta 6400+ con overclock, dos M.2 PCIe 4.0, USB 3.2 Gen 2x2, LAN de 2.5G, Wi-Fi 6E y un VRM bastante reforzado.
+**PC B:** el Ryzen 5 7600 cumple el piso de 8+ núcleos... en realidad tiene 6 núcleos / 12 hilos, que es menos que el mínimo recomendado de Blender. Lo elegimos a propósito como ejemplo del tipo de recorte que se hace en un contexto institucional: en un aula, los alumnos no están renderizando escenas de producción todo el día, sino aprendiendo a usar el programa con proyectos chicos de práctica. El Ryzen 5 ya viene con cooler de fábrica (ahorra esa compra) y, multiplicado por 30 equipos, la diferencia de precio contra un Ryzen 9 es enorme.
 
-**Por qué la elegimos:** el VRM reforzado le da margen para alimentar un Ryzen 9 de 12 núcleos sin sufrir en cargas largas de render. El Wi-Fi 6E y la LAN 2.5G ayudan para subir proyectos pesados o transmitir en vivo. Tener dos slots M.2 también deja la puerta abierta para meter más almacenamiento NVMe el día de mañana.
+## 2. Motherboard
 
-**Alternativas:** Gigabyte B650 Gaming X AX V2 (más barata) o ASUS ProArt B650-Creator si se quiere algo más orientado a "creator" (tiene USB4 y doble LAN).
+| | PC A | PC B |
+|---|---|---|
+| Modelo | MSI MAG X870 Tomahawk WiFi | Placa B650 de gama de entrada (ej. MSI PRO B650M-A o Gigabyte B650M) |
 
-## 3. RAM — 32 GB (2x16 GB) DDR5-6000 CL36
+**PC A:** el chipset X870 da más líneas PCIe 5.0, mejor VRM (importante para bancar 12 núcleos en cargas largas de render) y conectividad más moderna (USB4, Wi-Fi 7 en algunos modelos).
 
-32 GB es lo mínimo que pide Blender para escenas pesadas, y también es necesario para poder tener abierto Krita + GIMP + OBS + el navegador sin que la PC empiece a usar memoria virtual (swap). Elegimos justo la frecuencia 6000 MHz porque en los Ryzen 7000 es el punto donde mejor rinde el Infinity Fabric con los perfiles AMD EXPO activados — básicamente, más velocidad de RAM en esta plataforma se traduce en mejor rendimiento general, no es solo para gamers. Va en doble canal, 2 módulos de 16 GB cada uno.
+**PC B:** una B650 micro-ATX de gama de entrada cumple sin problema lo que necesita un Ryzen 5 7600, y al comprar 30 unidades cada componente "de gama media" que se pueda bajar a "gama de entrada" representa un ahorro importante en el total.
 
-## 4. Almacenamiento — SSD NVMe 1TB + HDD 2TB
+## 3. RAM
 
-- SSD: WD Blue SN580 1TB NVMe Gen4 (~4150 MB/s, 600 TBW, 5 años de garantía)
-- HDD: Seagate Barracuda 2TB SATA III 7200rpm (256MB de caché)
+| | PC A | PC B |
+|---|---|---|
+| Configuración | 64 GB (2x32) DDR5-6000 | 16 GB (2x8 o 1x16) DDR5-6000 |
 
-El SSD NVMe es para que Windows 11 arranque rápido, los proyectos carguen al toque y para que Blender/OBS puedan usarlo de caché. El HDD de 2TB es para el almacenamiento masivo, que en este escenario se llena rápido porque OBS genera archivos de video enormes, y también para guardar librerías de assets y backups. Es más barato por GB que un SSD grande.
+**PC A:** Blender recomienda 64 GB para escenas pesadas, y para un estudio profesional que puede recibir cualquier tipo de encargo (desde animaciones cortas hasta proyectos grandes con muchas capas y texturas 4K) conviene no quedarse corto.
 
-## 5. GPU — NVIDIA GeForce RTX 5060 Ti 16GB (ASUS Prime OC)
+**PC B:** acá está el cambio más importante que tuvimos que hacer respecto del relevamiento de requisitos, y lo dejamos marcado a propósito porque nos pareció un buen punto para defender: el requisito recomendado de Blender es 32 GB, pero **decidimos bajar a 16 GB en la propuesta institucional por la crisis de precios de la memoria DDR5**. Desde fines de 2025 el precio mundial de la RAM DDR5 subió entre 3 y 5 veces por la demanda de los centros de datos de IA, y en Argentina hoy (junio 2026) un kit de 32 GB DDR5-6000 ronda los $630.000-680.000, mientras que un kit de 16 GB anda cerca de los $330.000 (ver fuentes en presupuesto.md). Multiplicado por 30 equipos, ir a 32 GB en vez de 16 GB significa gastar entre 9 y 10 millones de pesos extra solo en memoria. Para un aula donde los alumnos hacen ejercicios de práctica (no producción real), nos pareció razonable priorizar que la institución pueda comprar los 30 equipos completos por sobre cumplir al pie de la letra el requisito recomendado de RAM. Lo anotamos como la excepción consciente al "piso" de requisitos.
 
-**Specs:** arquitectura Blackwell, 16GB de GDDR7, RT Cores, NVENC de novena generación (soporta AV1/HEVC/H.264), PCIe 5.0, pide una fuente de 600W como mínimo.
+## 4. Almacenamiento
 
-Esta es la pieza central de toda la propuesta porque:
+| | PC A | PC B |
+|---|---|---|
+| Configuración | SSD NVMe 1TB (SO/apps) + SSD NVMe 2TB (proyectos) + disco externo 4TB de respaldo | 1 solo SSD NVMe 1TB |
 
-- **Blender (OptiX):** Blender usa OptiX para aprovechar el ray-tracing por hardware que tienen las placas RTX y así renderizar más rápido en Cycles. Comparando con la RTX 4060 Ti (la generación anterior), esta tarjeta rinde como un 12,6% más en los benchmarks de Blender Open Data.
-- **OBS Studio (NVENC):** el encoder NVENC que trae la placa se encarga de codificar el video por su cuenta, sin tocar la CPU. Esto significa que mientras grabás o transmitís con OBS, la CPU queda libre para seguir laburando en Blender o Krita. Las RTX de series 40 y 50 también soportan codificación en AV1, que es más eficiente que el H.264 de siempre.
-- **16GB de VRAM:** da margen de sobra para escenas 3D complejas, texturas en 4K y lienzos grandes en Krita (que también usa la GPU para acelerar el dibujo).
+**PC A:** doble NVMe porque un estudio profesional necesita separar el sistema/apps de los proyectos pesados, y el disco externo es para respaldo — perder un proyecto de un cliente por no tener backup es un problema serio cuando es tu fuente de ingreso.
 
-**Alternativa:** la RTX 4060 Ti 16GB sale parecido pero es la generación anterior, así que conviene directamente ir por la 5060 Ti. Si el uso fuera mayormente 2D se podría bajar a una RTX 5060 de 8GB para ahorrar plata.
+**PC B:** un solo SSD alcanza de sobra para los seis programas y los proyectos de práctica de los alumnos. No tiene sentido sumar un segundo disco ni un externo: el respaldo de los trabajos de los alumnos lo maneja la red/servidor de la facultad, no el equipo individual.
 
-## 6. Gabinete — Mid-tower ATX con frente de malla
+## 5. GPU
 
-Elegimos uno con frente mesh (rejilla) porque deja entrar mucho más aire, y en este armado la CPU y la GPU van a estar trabajando a full por horas cuando se esté renderizando. Tiene espacio de sobra para una GPU de doble slot, el cooler de torre que elegimos y discos extra si se necesitan más adelante.
+| | PC A | PC B |
+|---|---|---|
+| Modelo | NVIDIA RTX 5070 Ti 16GB | NVIDIA RTX 5060 8GB |
 
-## 7. Fuente — CoolerMaster MWE Gold 750 V3 (80 Plus Gold, ATX 3.1)
+**PC A:** la RTX 5070 Ti da mucho margen de VRAM (16GB) para escenas 3D complejas y texturas pesadas, y acelera de sobra tanto Blender (OptiX) como OBS (NVENC). Para un estudio que compite por velocidad de entrega, esta es la pieza donde más vale la pena gastar.
 
-La RTX 5060 Ti pide 600W de fuente como mínimo. Sumando el Ryzen 9 7900 (que solo consume 65W) y dejando margen para picos de consumo y una futura GPU más potente, 750W con certificación 80+ Gold nos da una eficiencia de casi 90% a carga típica, además de estabilidad y poco ruido. Al ser ATX 3.1 con el conector 12V-2x6, es compatible con las GPU de generaciones actuales sin necesidad de adaptadores raros.
+**PC B:** la RTX 5060 8GB cumple el piso exacto del requisito (RTX, 8GB+ VRAM) ni un poco más. Sostiene bien NVENC para OBS y OptiX para Blender en proyectos chicos de aula, que es todo lo que un alumno de la materia necesita.
 
-## 8. Refrigeración — Thermalright Peerless Assassin 120 SE
+## 6. Gabinete, fuente y refrigeración
 
-Es un cooler de aire de doble torre con 6 heatpipes y dos ventiladores. Lo elegimos porque mantiene al Ryzen 9 7900 fresco incluso en renders largos, y sale mucho más barato que una refrigeración líquida (AIO), sin el riesgo de que se pinche una manguera o se rompa la bomba con el tiempo.
+| | PC A | PC B |
+|---|---|---|
+| Gabinete | Mid-tower ATX mesh, gama media-alta | Mid-tower ATX mesh, gama de entrada |
+| Fuente | 850W 80 Plus Gold | 650W 80 Plus Bronze/Gold |
+| Refrigeración | Cooler de aire doble torre (o AIO 240mm) | Cooler incluido de fábrica con el Ryzen 5 7600 |
 
-*Nota: si en la variante económica se usa el Ryzen 7 7700, este ítem se puede sacar porque esa CPU ya viene con cooler de fábrica.*
+En PC A buscamos margen térmico y silencio para renders largos y sostenidos. En PC B, al usar una CPU de bajo consumo que ya trae su propio cooler, no hace falta gastar en refrigeración aparte, y una fuente más chica alcanza sin problema porque la GPU consume mucho menos que la RTX 5070 Ti.
 
-## 9. Monitor — ASUS ProArt PA278QV 27" QHD IPS
+## 7. Monitor
 
-**Specs:** 27 pulgadas, panel IPS, resolución QHD (2560x1440), 350 cd/m² de brillo, 75Hz, soporte ajustable en altura/inclinación/giro/pivote.
+| | PC A | PC B |
+|---|---|---|
+| Modelo | ASUS ProArt PA279CRV 27" 4K (99% DCI-P3, ΔE&lt;2, calibrado de fábrica) | Monitor 24"-27" FHD/QHD IPS estándar, sin calibración de color |
 
-Para trabajar en GIMP, Krita e Inkscape la fidelidad de color es tan importante como tener una buena GPU. Este monitor viene calibrado de fábrica y certificado con Calman, con un ΔE menor a 2 y 100% de cobertura sRGB y Rec.709 — básicamente, los colores que ves en pantalla son los reales. La resolución QHD también da más espacio en pantalla para tener varios paneles abiertos o ver mejor el viewport de Blender, y el pivote (poder girar el monitor a vertical) es útil para ilustrar.
+**PC A:** para un estudio que vende su trabajo, la fidelidad de color no es un lujo sino una condición de calidad: el cliente final va a ver el resultado en otra pantalla, y si la del estudio no es fiel, el color "se rompe" en la entrega.
 
-## 10. Periféricos
+**PC B:** un monitor IPS común, sin pretensiones de calibración profesional, es perfectamente suficiente para que un alumno aprenda a usar Krita, GIMP o Inkscape. Pagar por calibración de fábrica en 30 monitores de aula sería gastar en algo que el caso de uso no necesita.
 
-- **Tableta gráfica - Wacom Intuos Small (Bluetooth):** la recomendamos para Krita y para retocar en GIMP. Tiene 4096 niveles de presión, lo que permite controlar el grosor y la opacidad del trazo de forma mucho más natural que con un mouse.
-- **Micrófono - FIFINE K669/K681 USB:** es un condensador cardioide plug & play por USB, sirve tanto para grabar voz en Audacity como para narrar/transmitir con OBS, sin necesitar una interfaz de audio aparte.
-- **Webcam - Logitech C920 Full HD:** la elegimos porque graba en 1080p a 30 fps, tiene enfoque automático y corrección de luz, y es el "estándar" que se usa hace años para esto, tanto para hacer la presentación audiovisual del propio trabajo como para usarla de fuente en OBS Studio (por ejemplo si se quiere grabar la cara en una esquina mientras se muestra la pantalla, algo típico en tutoriales o streams). Las webcams 4K más nuevas casi duplican el precio y para este uso no se justifica el salto.
-- **Parlantes - Logitech Z207 (estéreo, con Bluetooth):** los pensamos para escuchar de forma decente lo que se está editando en Audacity o el audio del video que se está armando en OBS/Blender, sin tener que depender de auriculares todo el tiempo. No hace falta ir a un sistema de monitores de estudio (esos arrancan en varios cientos de miles de pesos más caros y están pensados para mezclar audio profesionalmente, algo que excede lo que pide este escenario); con un 2.0 estéreo decente alcanza de sobra para chequear el resultado de una edición.
-- **Teclado + mouse - Logitech MK270 (inalámbrico):** un combo simple y confiable, no hace falta gastar más ahí porque el presupuesto importante va para GPU, monitor y tableta.
-- **Mouse 3D - 3Dconnexion SpaceMouse Compact:** este fue el más difícil de resolver porque la línea SpaceMouse es cara incluso en su versión más chica (la Compact, que es la de entrada de toda la familia). La descartamos en su versión "Pro" o "Wireless" porque ahí ya estamos hablando de un producto pensado para estudios de diseño profesional, no para un estudiante. Nos quedamos con la **Compact** (la más básica de la línea, con cable y 2 botones) porque igual permite lo importante: navegar en 3D con una mano (paneo, zoom y rotación en Blender) mientras con la otra mano se sigue usando el mouse normal para seleccionar y modelar. Es la versión más accesible dentro de un producto que de por sí es un nicho caro, y para nuestro escenario (un estudiante armando un estudio multimedia, no un estudio de animación profesional) nos pareció el punto justo entre "tenerlo" y "gastar una fortuna en algo que se usa ocasionalmente".
-- **Sistema operativo - Windows 11 Pro 64-bit:** ya lo justificamos en requisitos.md, soporta bien CUDA/OptiX y NVENC con los drivers NVIDIA Studio.
+## 8. Periféricos
 
-## Por qué todo es plataforma AM5
+| | PC A | PC B |
+|---|---|---|
+| Tableta gráfica | Wacom Intuos Pro Medium (Bluetooth, 8192 niveles de presión) | No incluida |
+| Mouse 3D | 3Dconnexion SpaceMouse Compact | No incluido |
+| Teclado + mouse | Combo de gama media | Combo básico |
+| Webcam / micrófono | Opcionales según necesidad de cada proyecto | No incluidos |
 
-Elegimos que CPU, motherboard y RAM compartan el mismo ecosistema (AM5 + DDR5 + PCIe 5.0) para asegurar compatibilidad total entre todo, y además dejamos abierta una ruta de actualización a futuro: se podría poner una CPU más nueva, agregar un segundo SSD NVMe o subir de GPU sin tener que cambiar la motherboard ni la RAM.
+**PC A:** acá entra todo lo que es "típico de un animador de Blender profesional". La tableta buena hace una diferencia real en la velocidad de trabajo en Krita, y el mouse 3D permite navegar en 3D con una mano mientras la otra sigue en el mouse normal, algo que un estudio que factura por proyecto entregado puede justificar rápido.
+
+**PC B:** ninguno de los dos se justifica para alumnos que recién están aprendiendo. Un mouse 3D en un aula de 30 PCs prácticamente no se usaría (es una herramienta de productividad para alguien que ya domina el software), y lo mismo con una tableta de nivel profesional — si en algún momento se necesitara para una clase puntual de ilustración, conviene comprar unas pocas tabletas compartidas en vez de equipar las 30 PCs.
+
+## Coherencia de cada propuesta
+
+Lo que tratamos de mostrar con esta comparación es que ninguna de las dos PCs es "mejor" en abstracto: **cada una es coherente con el perfil de uso que tiene que cubrir**. PC A invierte en todo lo que acelera el trabajo de un profesional porque ese gasto se recupera. PC B se mantiene en el piso de los requisitos porque cualquier exceso se multiplica por 30 y no hay un solo usuario que rentabilice esa inversión extra. Esa es la idea que más nos interesa poder explicar bien en la defensa.

@@ -2,38 +2,47 @@
 
 ## Resumen de lo que hicimos
 
-Armamos una propuesta de estación de trabajo para un estudio multimedia que pueda correr sin problemas (y hasta al mismo tiempo) Audacity, Blender, Inkscape, GIMP, Krita y OBS Studio. Para llegar a esto, primero relevamos los requisitos recomendados de cada programa, vimos cuál era el "techo" de exigencia entre todos (que terminó siendo Blender, seguido de OBS) y a partir de ahí elegimos los componentes que cumplan o superen ese techo, todo corriendo sobre Windows 11 Pro 64-bit.
+Para el escenario de estudio multimedia (Audacity, Blender, Inkscape, GIMP, Krita y OBS Studio) decidimos no quedarnos en una sola propuesta de hardware, sino comparar **dos PCs que cumplen el mismo relevamiento de requisitos pero responden a lógicas de compra completamente distintas**:
 
-## Las decisiones más importantes que tomamos
+- **PC A — Estudio independiente de animación:** perfil profesional, un solo usuario que vive de este trabajo. Decisión de fondo: invertir por encima del requisito recomendado, porque ese gasto extra se recupera en tiempo de render y en vida útil del equipo.
+- **PC B — Aula institucional (perfil tipo facultad, 30 equipos):** perfil de compra masiva con presupuesto acotado. Decisión de fondo: cumplir el piso de requisitos justo y ni un poco más, porque cualquier exceso se multiplica por 30 unidades.
 
-1. **GPU NVIDIA RTX 5060 Ti 16GB** — sin duda la elección más importante de todo el armado. Permite usar OptiX para acelerar el render en Blender (Cycles) y NVENC para que OBS codifique video sin tocar la CPU. Los 16GB de VRAM dan bastante margen para escenas 3D pesadas y texturas grandes.
-2. **CPU Ryzen 9 7900 (12c/24t)** — porque tanto el render por CPU como las simulaciones y el compositing de Blender escalan con la cantidad de hilos. Con 12 núcleos se puede renderizar y seguir trabajando al mismo tiempo sin que la PC se trabe.
-3. **32GB de RAM DDR5-6000** — es lo mínimo que pide Blender para escenas pesadas, y la frecuencia que elegimos es la que mejor rinde en la plataforma Ryzen 7000.
-4. **Monitor ASUS ProArt PA278QV** (100% sRGB, ΔE menor a 2) — nos dimos cuenta de que para este escenario la fidelidad de color es casi tan importante como la potencia de cómputo, porque se va a usar para diseño en Krita, GIMP e Inkscape.
-5. **Plataforma AM5** — la elegimos por ser actual, coherente entre todos los componentes y porque deja la puerta abierta para actualizar la PC más adelante (DDR5, PCIe 5.0).
+Nos pareció que esta comparación cuenta una historia más completa que una sola PC "ideal", porque obliga a justificar **por qué se elige más** en un caso y **por qué se elige menos** en el otro, en vez de simplemente mostrar la mejor combinación que entra en un presupuesto fijo.
 
 ## Tabla de cumplimiento de requisitos
 
-| Recurso | Requisito máximo del conjunto | Lo que propusimos | ¿Cumple? |
+| Recurso | Piso del conjunto de programas | PC A | PC B |
 |---|---|---|---|
-| CPU | 8+ núcleos | 12 núcleos / 24 hilos | Sí, lo supera |
-| RAM | 32 GB | 32 GB DDR5-6000 | Sí, cumple |
-| GPU / VRAM | RTX, 8GB+ | RTX 5060 Ti, 16GB | Sí, lo supera |
-| Almacenamiento | NVMe + disco grande | NVMe 1TB + HDD 2TB | Sí, cumple |
-| Color del monitor | sRGB alto, ΔE bajo | 100% sRGB, ΔE < 2 | Sí, cumple |
+| CPU | 8+ núcleos | 12 núcleos / 24 hilos — supera | 6 núcleos / 12 hilos — por debajo a propósito* |
+| RAM | 32 GB | 64 GB — supera | 16 GB — por debajo a propósito* |
+| GPU / VRAM | RTX, 8GB+ | RTX 5070 Ti, 16GB — supera | RTX 5060, 8GB — cumple justo |
+| Almacenamiento | NVMe + disco grande | NVMe 1TB + 2TB + externo 4TB — supera | NVMe 1TB — cumple lo básico |
+| Color del monitor | sRGB alto, ΔE bajo | 99% DCI-P3, ΔE&lt;2 calibrado — supera | Monitor estándar sin calibrar — por debajo a propósito* |
 
-Como se ve, en CPU y en GPU/VRAM la propuesta queda por encima de lo mínimo pedido, lo que le da margen para que la PC no quede obsoleta tan rápido y aguante proyectos más grandes en el futuro.
+*Los tres casos marcados "por debajo a propósito" en PC B son decisiones conscientes de recorte para un contexto institucional con 30 equipos, no errores de relevamiento. Las explicamos una por una en justificacion.md y presupuesto.md.
 
-## Costo y posibilidad de escalar
+## Lo que más nos interesa poder transmitir en la defensa
 
-El sistema completo (la PC + monitor + periféricos + el sistema operativo) sale aproximadamente $4.000.000 ARS, donde la GPU (~25%) y el monitor (~15%) son los rubros que más pesan. También armamos una variante más económica (~$3.500.000 ARS) que mantiene la RAM, la VRAM y el SSD sin tocar, pensada para el caso de que hubiera un límite de presupuesto más ajustado. Como toda la plataforma es AM5, en el futuro se podría poner una CPU mejor, agregar un segundo SSD NVMe o cambiar a una GPU más potente sin necesidad de cambiar la motherboard ni la RAM.
+1. **No existe "la mejor PC" en abstracto.** Existe la PC adecuada para un caso de uso. Un estudio profesional y un aula de 30 alumnos tienen necesidades, presupuestos y formas de amortizar el gasto totalmente distintas, aunque tengan que correr exactamente los mismos seis programas.
+2. **El contexto cambia la lectura de cada componente.** La RTX 5070 Ti de PC A no es "mejor" que la RTX 5060 de PC B en términos absolutos de la consigna — las dos cumplen el requisito (RTX, 8GB+ VRAM). La diferencia es cuánto margen por arriba del piso tiene sentido pagar en cada contexto.
+3. **Multiplicar por 30 cambia las decisiones.** Una diferencia de $300.000-400.000 por equipo entre "cumplir justo" y "tener margen" se vuelve una diferencia de 9-12 millones de pesos en una compra institucional. Eso es lo que justifica que en PC B nos hayamos quedado en el piso de RAM, CPU y monitor.
+4. **El contexto de mercado también es parte de la justificación técnica.** La crisis de precios de la memoria DDR5 (que detallamos en presupuesto.md) es un dato real de junio de 2026 que afecta directamente la decisión de cuánta RAM poner en cada propuesta, sobre todo en PC B.
 
-## Algunas limitaciones que encontramos
+## Costo final
 
-- **Los precios cambian todo el tiempo:** en Argentina el costo del hardware depende mucho del dólar, los impuestos y las promociones de cada momento. Los precios que usamos son de referencia (junio 2026).
-- **Los benchmarks son orientativos:** los números que citamos (Cinebench, Blender Open Data) dependen de cómo esté configurada cada PC (límites de potencia, PBO, drivers), así que hay que tomarlos con pinzas y no como un valor exacto.
-- **La opción de Linux:** si en algún momento se buscara bajar el costo sacando la licencia de Windows, Linux también puede correr todo el combo de programas, aunque con más complicaciones con los drivers de NVIDIA y algunos periféricos.
+| | PC A (1 equipo) | PC B (1 equipo) | PC B × 30 equipos |
+|---|---|---|---|
+| Total | ≈ $8.420.000 | ≈ $2.420.000 | ≈ $72.600.000 |
+
+La diferencia de costo por equipo (casi 3.5 veces más cara la PC A) refleja fielmente la diferencia de filosofía: en PC A cada componente fue elegido para maximizar productividad de un usuario que rentabiliza la inversión con su propio trabajo; en PC B cada componente fue elegido para que la institución pueda pagar 30 unidades sin resignar que los alumnos puedan cursar la materia con normalidad.
+
+## Limitaciones y consideraciones
+
+- **Precios volátiles:** el costo en Argentina depende del tipo de cambio, impuestos y promociones; los valores son de referencia (junio 2026) y deben confirmarse antes de comprar.
+- **La RAM en particular puede seguir moviéndose:** la crisis de precios de la DDR5 es un fenómeno reciente y los analistas no se ponen de acuerdo en cuándo se va a normalizar (algunos hablan de fines de 2026, otros de 2027-2028), así que el presupuesto de ambas PCs podría variar bastante en poco tiempo.
+- **Benchmarks orientativos:** los números de rendimiento que se mencionan en la justificación dependen de la configuración específica de cada equipo (drivers, límites de potencia, etc.) y deben tomarse como referencia general.
+- **Alternativa Linux:** si se buscara reducir costos de licencias, sobre todo en PC B donde se multiplican por 30, Linux corre todo el conjunto de programas, a cambio de mayor fricción con drivers NVIDIA y la gestión por dominio que ofrece Windows Pro.
 
 ## Cierre
 
-Con esta propuesta llegamos a una PC bastante equilibrada y pensada específicamente para producción multimedia: aprovechamos la aceleración por hardware de NVIDIA en los programas que la soportan, priorizamos la fidelidad de color para el trabajo visual, y tratamos de mantener un costo razonable dejando una ruta clara para actualizar la PC en el futuro. Creemos que con esto cumplimos lo que pedía la consigna: un relevamiento de requisitos completo, una justificación técnica con sentido y un presupuesto detallado y verificable.
+Con este enfoque comparativo creemos que mostramos algo más completo que una propuesta única: dos soluciones de hardware igualmente válidas y bien justificadas, cada una coherente con el contexto de uso que tiene que cubrir. La defensa que nos interesa dar no es "elegimos los mejores componentes", sino "supimos elegir qué tan lejos del piso de requisitos conviene ir en cada situación, y por qué".
